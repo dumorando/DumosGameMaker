@@ -1,0 +1,295 @@
+<!-- Dumos Game Maker -->
+<!-- Licensed under BSD-3-Clause license. -->
+
+<!-- FOR CONTRIBUTORS: Run prettier before contributing -->
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">-->
+    <title>Dumos Game Maker</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="vex.css" />
+    <link rel="stylesheet" href="vex-theme-os.css" />
+  </head>
+  <body>
+    <div id="menubar">
+      Dumos Game Maker
+      <button id="Menu-Btn" onclick="loadsrc()">Load</button
+      >&nbsp;&nbsp;&nbsp;&nbsp;
+      <button id="Menu-Btn" onclick="savesrc()">Save</button
+      >&nbsp;&nbsp;&nbsp;&nbsp;
+      <button id="Menu-Btn" onclick="switchTab('about')">About</button>&nbsp;
+      <button id="Menu-Btn" onclick="switchTab('details')">Run</button>&nbsp;
+      <button id="Menu-Btn" onclick="switchTab('sprites')">Sprites</button
+      >&nbsp;
+      <button id="Menu-Btn" onclick="switchTab('editor')">Editor</button>&nbsp;
+    </div>
+    <!-- #legacy -->
+    <a style="display: none" id="a"></a>
+    <!-- for saving dg files -->
+    <input type="file" id="dgLoader" style="display: none" accept=".dg" />
+    <!-- for loading dg files -->
+    <!-- #legacy -->
+    <div id="EditorTab" style="width: 100%; height: 900px"></div>
+    <div id="SpritesTab" style="display: none" class="tab">
+      <h1>Sprites</h1>
+      <br />
+      <p>
+        This is similar to a Files tab. You can store Audios and Pictures here
+        for your game, then fetch it out with the Data URI category.
+      </p>
+      <button class="button-85" role="button" onclick="AddSprite()">
+        Add Sprite</button
+      ><button class="button-85" role="button" onclick="RemoveSprite()">
+        Remove Sprite</button
+      ><button class="button-85" role="button" onclick="renderSprites()">
+        Reload
+      </button>
+      <div id="sprites"></div>
+    </div>
+    <div id="AboutTab" style="display: none" class="tab">
+      <h1>Welcome to Dumo's Game Maker!</h1>
+      <p>
+        This is an early version, so you shouldn't expect it to be THE MOST
+        stable.
+      </p>
+    </div>
+    <div id="DetailsTab" style="display: none; margin: 8px" class="tab">
+      <h1 style="font-family: Arial, Helvetica, sans-serif">Details</h1>
+      <label for="project_title">Project Title</label>
+      <input
+        type="text"
+        id="project_title"
+        name="project_title"
+        value="Untitled Project"
+      />
+      <button class="button-85" role="button" onclick="compileCode()">
+        Compile
+      </button>
+      <button class="button-85" role="button" onclick="previewCode()">
+        Preview
+      </button>
+      <button class="button-85" role="button" onclick="saveAsHtml()">
+        Save
+      </button>
+      <button class="button-85" role="button" onclick="inspectJS()">
+        Inspect
+      </button>
+    </div>
+
+    <!-- dumos game maker important libraries -->
+    <script src="./blockly/blockly_compressed.js"></script>
+    <script src="newvariable.js"></script>
+    <script src="./blockly/blocks_compressed.js"></script>
+    <script src="./blockly/javascript_compressed.js"></script>
+    <script src="./blockly/msg/en.js"></script>
+    <script src="toolbox.js"></script>
+    <script src="./categories/game.js"></script>
+    <script src="./categories/datauri.js"></script>
+    <script src="./categories/collision.js"></script>
+    <script src="./categories/physics.js"></script>
+    <!-- for the game category. -->
+    <!--<script src="idkblocklyrequiredthing.js"></script>-->
+    <script src="blocklyinjector.js"></script>
+
+    <script src="tabs.js"></script>
+    <script src="BlocklyTheme.js"></script>
+    <script src="CompileVars.js"></script>
+    <script src="CompileToHTML.js"></script>
+    <script src="sweetalert2.js"></script>
+    <script src="vex.combined.min.js"></script>
+    <script src="SpriteImport.js"></script>
+    <script>
+      vex.defaultOptions.className = "vex-theme-os";
+      var compiledResult = null;
+
+      var sprites = [];
+
+      function renderSprites() {
+        document.getElementById("sprites").innerHTML = "";
+        sprites.forEach((sprite) => {
+          var SpriteElement = document.createElement("div");
+          var pelement = document.createElement("p");
+          pelement.innerHTML = sprite[0];
+          SpriteElement.appendChild(pelement);
+
+          if (checkDataType(sprite[1]) == "audio") {
+            var audioElement = document.createElement("audio");
+            audioElement.controls = true;
+            audioElement.src = sprite[1];
+            SpriteElement.appendChild(audioElement);
+          } else {
+            var imgElement = document.createElement("img");
+            imgElement.src = sprite[1];
+            SpriteElement.appendChild(imgElement);
+          }
+
+          document.getElementById("sprites").appendChild(SpriteElement);
+        });
+      }
+
+      function checkDataType(dataUrl) {
+        if (dataUrl.startsWith("data:audio")) {
+          return "audio";
+        } else if (dataUrl.startsWith("data:image")) {
+          return "image";
+        } else {
+          return "unknown";
+        }
+      }
+
+      function AddSprite() {
+        getFileAsDataURI("image").then(function (datauri) {
+          vex.dialog.prompt({
+            message: "Enter the ID:",
+            callback: function (value) {
+              if (value) {
+                sprites.push([value.trim().replace(" ", ""), datauri]);
+                renderSprites();
+              }
+            },
+          });
+        });
+      }
+      //game preview tool & export tool with compileToHtml
+      function inspectJS() {
+        let code = javascript.javascriptGenerator.workspaceToCode(workspace);
+        alert(code);
+      }
+      function saveAsHtml() {
+        if (!compiledResult) {
+          Swal.fire({
+            title: "Error",
+            text: "Please compile it first.",
+            icon: "error",
+          });
+          return;
+        }
+        const blob = new Blob([compiledResult], { type: "text/html" });
+        const link = document.createElement("a");
+        link.download = `${document.getElementById("project_title").innerHTML}.html`;
+        link.href = window.URL.createObjectURL(blob);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+      function previewCode() {
+        if (!compiledResult) {
+          Swal.fire({
+            title: "Error",
+            text: "Please compile it first.",
+            icon: "error",
+          });
+          return;
+        }
+        previewwindow = window.open(
+          "",
+          "Preview Window",
+          window.screen.width,
+          window.screen.height,
+        );
+        previewwindow.document.write(compiledResult);
+        previewwindow.document.close();
+      }
+
+      function compileCode() {
+        javascript.javascriptGenerator.addReservedWords("code");
+        let code =
+          "kaboom()\nsetGravity(2400)\nvar DGMOutputSprites = " +
+          JSON.stringify(sprites) +
+          "\n" +
+          javascript.javascriptGenerator.workspaceToCode(workspace);
+        compiledResult = compileToHtml(
+          code,
+          document.getElementById("project_title").textContent,
+        );
+        Swal.fire({
+          title: "Success",
+          text: "Your code has been compiled successfully! Press Preview to open it as a new window, or Save to save it as a HTML file.",
+          icon: "success",
+        });
+      }
+
+      function loadsrc() {
+        vex.dialog.prompt({
+          message: "Enter the ID:",
+          callback: function (value) {
+            if (value) {
+              if (value in localStorage) {
+                LoadDGMCodeJson(
+                  JSON.parse(localStorage.getItem(value)),
+                  workspace,
+                );
+              } else {
+                alert("That doesn't exist.");
+              }
+            }
+          },
+        });
+      }
+
+      function savesrc() {
+        vex.dialog.prompt({
+          message: "Enter the ID:",
+          callback: function (value) {
+            if (value) {
+              alert(value);
+              localStorage.setItem(value, JSON.stringify(GetDGMCodeJson()));
+            }
+          },
+        });
+      }
+
+      function GetDGMCodeJson() {
+        let code = JSON.stringify(
+          Blockly.serialization.workspaces.save(workspace),
+        );
+        return {
+          sprites: sprites,
+          code: code,
+        };
+      }
+
+      function LoadDGMCodeJson(dgmjson) {
+        sprites = dgmjson.sprites;
+        var code = JSON.parse(dgmjson.code);
+        Blockly.serialization.workspaces.load(code, workspace);
+      }
+
+      function download(text, name, type) {
+        console.log("[DGM Logger]: downloading workspace..");
+        var a = document.getElementById("a");
+        var file = new Blob([text], { type: type });
+        a.href = URL.createObjectURL(file);
+        a.download = name;
+        a.click();
+      }
+
+      document
+        .getElementById("dgLoader")
+        .addEventListener("change", function () {
+          const dgfile = document.getElementById("dgLoader").files[0];
+          if (dgfile) {
+            console.log("[DGM Logger]: loaded a file called " + dgfile.name);
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+              const fileContent = event.target.result;
+              console.log(fileContent);
+              Blockly.serialization.workspaces.load(
+                JSON.parse(fileContent),
+                workspace,
+              );
+            };
+
+            reader.readAsText(dgfile);
+          } else {
+            console.log("[DGM Logger]: file doesnt have a value, aborting..");
+          }
+        });
+    </script>
+  </body>
+</html>

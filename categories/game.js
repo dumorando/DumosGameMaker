@@ -16,6 +16,8 @@ Blockly.defineBlocksWithJsonArray([
         name: "code",
       },
     ],
+    previousStatement: null,
+    nextStatement: null,
     inputsInline: true,
     colour: color,
     tooltip: "Runs every tick.",

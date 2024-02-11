@@ -38,9 +38,9 @@ const DumosGameMakerToolbox = {
   kind: "categoryToolbox",
   contents: [
     {
-      'kind': 'search',
-      'name': 'Search',
-      'contents': [],
+      kind: "search",
+      name: "Search",
+      contents: [],
     },
     {
       kind: "category",
@@ -49,7 +49,7 @@ const DumosGameMakerToolbox = {
       contents: [
         {
           type: "controls_if",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "controls_repeat_ext",
@@ -116,7 +116,7 @@ const DumosGameMakerToolbox = {
             },
           },
         },
-      ]
+      ],
     },
     {
       kind: "category",
@@ -162,7 +162,7 @@ const DumosGameMakerToolbox = {
             BOOL: "TRUE",
           },
         },
-      ]
+      ],
     },
     {
       kind: "category",
@@ -260,7 +260,7 @@ const DumosGameMakerToolbox = {
             },
           },
         },
-        
+
         {
           type: "text_join",
           kind: "block",
@@ -747,11 +747,11 @@ const DumosGameMakerToolbox = {
         },
         {
           type: "game_scene",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "game_goscene",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "game_keypressed",
@@ -759,7 +759,7 @@ const DumosGameMakerToolbox = {
         },
         {
           type: "game_deltatime",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "game_set_gravity",
@@ -797,21 +797,21 @@ const DumosGameMakerToolbox = {
       contents: [
         {
           type: "collision_add_area",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "collision_grounded",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "physics_add_body",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "physics_addbodystatic",
-          kind: "block"
-        }
-      ]
+          kind: "block",
+        },
+      ],
     },
     {
       kind: "category",
@@ -820,21 +820,21 @@ const DumosGameMakerToolbox = {
       contents: [
         {
           type: "movement_gotoxy",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "movement_movexy",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "movement_xpos",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "movement_ypos",
-          kind: "block"
-        }
-      ]
+          kind: "block",
+        },
+      ],
     },
     {
       kind: "category",
@@ -843,65 +843,65 @@ const DumosGameMakerToolbox = {
       contents: [
         {
           type: "time_waitforseconds",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "time_everyseconds",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "time_timer",
-          kind: "block"
-        }
-      ]
+          kind: "block",
+        },
+      ],
     },
     {
       // Lists Category
-      kind: 'CATEGORY',
+      kind: "CATEGORY",
       name: "Lists",
-      colour: '%{BKY_LISTS_HUE}',
+      colour: "%{BKY_LISTS_HUE}",
       contents: [
         {
-          kind: 'BLOCK',
-          type: 'lists_create_with',
-          extraState: {itemCount: 0},
+          kind: "BLOCK",
+          type: "lists_create_with",
+          extraState: { itemCount: 0 },
         },
         {
-          kind: 'BLOCK',
-          type: 'lists_create_with',
-          extraState: {itemCount: 3},
+          kind: "BLOCK",
+          type: "lists_create_with",
+          extraState: { itemCount: 3 },
         },
         {
-          kind: 'BLOCK',
-          type: 'lists_repeat',
+          kind: "BLOCK",
+          type: "lists_repeat",
           inputs: {
             NUM: {
               shadow: {
-                type: 'math_number',
-                fields: {NUM: 5},
+                type: "math_number",
+                fields: { NUM: 5 },
               },
             },
           },
         },
         {
-          kind: 'BLOCK',
-          type: 'lists_length',
+          kind: "BLOCK",
+          type: "lists_length",
         },
         {
-          kind: 'BLOCK',
-          type: 'lists_isEmpty',
+          kind: "BLOCK",
+          type: "lists_isEmpty",
         },
         {
-          kind: 'BLOCK',
-          type: 'lists_indexOf',
+          kind: "BLOCK",
+          type: "lists_indexOf",
           inputs: {
             VALUE: {
               block: {
-                type: 'variables_get',
+                type: "variables_get",
                 fields: {
                   VAR: {
-                    name: '%{BKY_VARIABLES_DEFAULT_NAME}',
-                    type: 'List',
+                    name: "%{BKY_VARIABLES_DEFAULT_NAME}",
+                    type: "List",
                   },
                 },
               },
@@ -909,16 +909,16 @@ const DumosGameMakerToolbox = {
           },
         },
         {
-          kind: 'BLOCK',
-          type: 'lists_getIndex',
+          kind: "BLOCK",
+          type: "lists_getIndex",
           inputs: {
             VALUE: {
               block: {
-                type: 'variables_get',
+                type: "variables_get",
                 fields: {
                   VAR: {
-                    name: '%{BKY_VARIABLES_DEFAULT_NAME}',
-                    type: 'List',
+                    name: "%{BKY_VARIABLES_DEFAULT_NAME}",
+                    type: "List",
                   },
                 },
               },
@@ -926,16 +926,16 @@ const DumosGameMakerToolbox = {
           },
         },
         {
-          kind: 'BLOCK',
-          type: 'lists_setIndex',
+          kind: "BLOCK",
+          type: "lists_setIndex",
           inputs: {
             LIST: {
               block: {
-                type: 'variables_get',
+                type: "variables_get",
                 fields: {
                   VAR: {
-                    name: '%{BKY_VARIABLES_DEFAULT_NAME}',
-                    type: 'List',
+                    name: "%{BKY_VARIABLES_DEFAULT_NAME}",
+                    type: "List",
                   },
                 },
               },
@@ -943,16 +943,16 @@ const DumosGameMakerToolbox = {
           },
         },
         {
-          kind: 'BLOCK',
-          type: 'lists_getSublist',
+          kind: "BLOCK",
+          type: "lists_getSublist",
           inputs: {
             LIST: {
               block: {
-                type: 'variables_get',
+                type: "variables_get",
                 fields: {
                   VAR: {
-                    name: '%{BKY_VARIABLES_DEFAULT_NAME}',
-                    type: 'List',
+                    name: "%{BKY_VARIABLES_DEFAULT_NAME}",
+                    type: "List",
                   },
                 },
               },
@@ -960,16 +960,16 @@ const DumosGameMakerToolbox = {
           },
         },
         {
-          kind: 'BLOCK',
-          type: 'lists_getSublist',
+          kind: "BLOCK",
+          type: "lists_getSublist",
           inputs: {
             LIST: {
               block: {
-                type: 'variables_get',
+                type: "variables_get",
                 fields: {
                   VAR: {
-                    name: '%{BKY_VARIABLES_DEFAULT_NAME}',
-                    type: 'List',
+                    name: "%{BKY_VARIABLES_DEFAULT_NAME}",
+                    type: "List",
                   },
                 },
               },
@@ -977,28 +977,28 @@ const DumosGameMakerToolbox = {
           },
         },
         {
-          kind: 'BLOCK',
-          type: 'lists_split',
+          kind: "BLOCK",
+          type: "lists_split",
           inputs: {
             DELIM: {
               shadow: {
-                type: 'text',
-                fields: {TEXT: ','},
+                type: "text",
+                fields: { TEXT: "," },
               },
             },
           },
         },
         {
-          kind: 'BLOCK',
-          type: 'lists_sort',
+          kind: "BLOCK",
+          type: "lists_sort",
           inputs: {
             LIST: {
               block: {
-                type: 'variables_get',
+                type: "variables_get",
                 fields: {
                   VAR: {
-                    name: '%{BKY_VARIABLES_DEFAULT_NAME}',
-                    type: 'List',
+                    name: "%{BKY_VARIABLES_DEFAULT_NAME}",
+                    type: "List",
                   },
                 },
               },
@@ -1006,17 +1006,17 @@ const DumosGameMakerToolbox = {
           },
         },
         {
-          kind: 'BLOCK',
-          type: 'lists_reverse',
+          kind: "BLOCK",
+          type: "lists_reverse",
           inputs: {
             LIST: {
               block: {
-                type: 'variables_get',
-                id: 'Jyppgi#k[zERF`IH{gqY',
+                type: "variables_get",
+                id: "Jyppgi#k[zERF`IH{gqY",
                 fields: {
                   VAR: {
-                    name: '%{BKY_VARIABLES_DEFAULT_NAME}',
-                    type: 'List',
+                    name: "%{BKY_VARIABLES_DEFAULT_NAME}",
+                    type: "List",
                   },
                 },
               },
@@ -1032,29 +1032,29 @@ const DumosGameMakerToolbox = {
       contents: [
         {
           type: "window_gameresolution",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "window_center",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "window_focused",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "window_touchscreen",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "window_fullscreen",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "window_setfullscreen",
-          kind: "block"
-        }
-      ]
+          kind: "block",
+        },
+      ],
     },
     {
       kind: "category",
@@ -1063,33 +1063,33 @@ const DumosGameMakerToolbox = {
       contents: [
         {
           type: "input_keydown",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "input_keypressed",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "input_keyreleased",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "input_mousedown",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "input_mousepressed",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "input_mousereleased",
-          kind: "block"
+          kind: "block",
         },
         {
           type: "input_mousepos",
-          kind: "block"
-        }
-      ]
-    }
+          kind: "block",
+        },
+      ],
+    },
   ],
 };

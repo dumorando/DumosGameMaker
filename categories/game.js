@@ -34,25 +34,25 @@ Blockly.defineBlocksWithJsonArray([
       "https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event",
   },
   {
-    "type": "game_scene",
-    "message0": "Scene %1 %2 %3",
-    "args0": [
+    type: "game_scene",
+    message0: "Scene %1 %2 %3",
+    args0: [
       {
-        "type": "field_input",
-        "name": "SCENE",
-        "text": "main"
+        type: "field_input",
+        name: "SCENE",
+        text: "main",
       },
       {
-        "type": "input_dummy"
+        type: "input_dummy",
       },
       {
-        "type": "input_statement",
-        "name": "NAME"
-      }
+        type: "input_statement",
+        name: "NAME",
+      },
     ],
-    "colour": color,
-    "tooltip": "Creates a scene",
-    "helpUrl": ""
+    colour: color,
+    tooltip: "Creates a scene",
+    helpUrl: "",
   },
   {
     type: "game_set_gravity",
@@ -72,8 +72,7 @@ Blockly.defineBlocksWithJsonArray([
   },
   {
     type: "game_create_gameobject",
-    message0:
-      "Create game object %1 Sprite %2 Position %3 %4 %5 Rotation %6",
+    message0: "Create game object %1 Sprite %2 Position %3 %4 %5 Rotation %6",
     args0: [
       {
         type: "input_dummy",
@@ -175,33 +174,33 @@ Blockly.defineBlocksWithJsonArray([
     helpUrl: "",
   },
   {
-    "type": "game_deltatime",
-    "message0": "delta time",
-    "output": null,
-    "colour": 210,
-    "tooltip": "Returns the time since last frame.",
-    "helpUrl": ""
+    type: "game_deltatime",
+    message0: "delta time",
+    output: null,
+    colour: 210,
+    tooltip: "Returns the time since last frame.",
+    helpUrl: "",
   },
   {
-    "type": "game_goscene",
-    "message0": "Go to scene %1",
-    "args0": [
+    type: "game_goscene",
+    message0: "Go to scene %1",
+    args0: [
       {
-        "type": "field_input",
-        "name": "SCENE",
-        "text": "main"
-      }
+        type: "field_input",
+        name: "SCENE",
+        text: "main",
+      },
     ],
-    "previousStatement": null,
-    "colour": 230,
-    "tooltip": "Changes scene to specified scene",
-    "helpUrl": ""
-  }
+    previousStatement: null,
+    colour: 230,
+    tooltip: "Changes scene to specified scene",
+    helpUrl: "",
+  },
 ]);
 
 Blockly.JavaScript["game_on_tick"] = function (block) {
   var statements_code = Blockly.JavaScript.statementToCode(block, "code");
-  var code = "onUpdate(() => {\n" + statements_code + "\n});"
+  var code = "onUpdate(() => {\n" + statements_code + "\n});";
   return code;
 };
 
@@ -244,28 +243,27 @@ javascript.javascriptGenerator.forBlock["game_create_gameobject"] = function (
     javascript.Order.ATOMIC,
   );
   // Initialize code variable with template string
-var code = `add([sprite(${value_sprite}),pos(${number_xpos.toString()}, ${number_ypos.toString()}),rotate(${value_rotation}),scale(1),REPLACEIFPHYSICSREPLACEIFCOLLISION])\n`;
+  var code = `add([sprite(${value_sprite}),pos(${number_xpos.toString()}, ${number_ypos.toString()}),rotate(${value_rotation}),scale(1),REPLACEIFPHYSICSREPLACEIFCOLLISION])\n`;
 
-// Log value_physics and value_collision for debugging purposes
-console.log(value_physics);
-console.log(value_collision);
+  // Log value_physics and value_collision for debugging purposes
+  console.log(value_physics);
+  console.log(value_collision);
 
-// Replace placeholders based on conditions
-if (value_physics) {
-  code = code.replace("REPLACEIFPHYSICS", "body(),");
-} else {
-  code = code.replace("REPLACEIFPHYSICS", ""); // Remove placeholder if physics is false
-}
+  // Replace placeholders based on conditions
+  if (value_physics) {
+    code = code.replace("REPLACEIFPHYSICS", "body(),");
+  } else {
+    code = code.replace("REPLACEIFPHYSICS", ""); // Remove placeholder if physics is false
+  }
 
-if (value_collision) {
-  code = code.replace("REPLACEIFCOLLISION", "area(),");
-} else {
-  code = code.replace("REPLACEIFCOLLISION", "");
-}
-// Remove any trailing comma if it exists
-code = code.replace(/,\s*$/, "");
-return [code, Blockly.JavaScript.ORDER_NONE];
-
+  if (value_collision) {
+    code = code.replace("REPLACEIFCOLLISION", "area(),");
+  } else {
+    code = code.replace("REPLACEIFCOLLISION", "");
+  }
+  // Remove any trailing comma if it exists
+  code = code.replace(/,\s*$/, "");
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 javascript.javascriptGenerator.forBlock["game_load_sprite"] = function (
@@ -305,23 +303,33 @@ javascript.javascriptGenerator.forBlock["game_keypressed"] = function (
   return code;
 };
 
-javascript.javascriptGenerator.forBlock['game_deltatime'] = function(block, generator) {
+javascript.javascriptGenerator.forBlock["game_deltatime"] = function (
+  block,
+  generator,
+) {
   // TODO: Assemble javascript into code variable.
-  var code = 'dt()';
+  var code = "dt()";
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-javascript.javascriptGenerator.forBlock['game_scene'] = function(block, generator) {
-  var text_scene = block.getFieldValue('SCENE');
-  var statements_name = generator.statementToCode(block, 'NAME');
+javascript.javascriptGenerator.forBlock["game_scene"] = function (
+  block,
+  generator,
+) {
+  var text_scene = block.getFieldValue("SCENE");
+  var statements_name = generator.statementToCode(block, "NAME");
   // TODO: Assemble javascript into code variable.
-  var code = 'scene("' + text_scene + '", () => {\n' + statements_name + '\n})\n';
+  var code =
+    'scene("' + text_scene + '", () => {\n' + statements_name + "\n})\n";
   return code;
 };
 
-javascript.javascriptGenerator.forBlock['game_goscene'] = function(block, generator) {
-  var text_scene = block.getFieldValue('SCENE');
+javascript.javascriptGenerator.forBlock["game_goscene"] = function (
+  block,
+  generator,
+) {
+  var text_scene = block.getFieldValue("SCENE");
   // TODO: Assemble javascript into code variable.
   var code = 'go("' + text_scene + '")\n';
   return code;

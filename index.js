@@ -16,12 +16,12 @@ const createWindow = () => {
   //win.removeMenu();
   win.loadFile("index.html");
 
-  win.on('close', function (e) {
+  win.on("close", function (e) {
     const choice = dialog.showMessageBoxSync(win, {
-      type: 'question',
-      buttons: ['Leave', 'Stay'],
+      type: "question",
+      buttons: ["Leave", "Stay"],
       defaultId: 0,
-      message: 'Are you sure you want to leave? Unsaved Data Will Be Lost!'
+      message: "Are you sure you want to leave? Unsaved Data Will Be Lost!",
     });
 
     if (choice === 1) {

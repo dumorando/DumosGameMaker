@@ -21,6 +21,5 @@ literallyTheEntireGame
     alert(error);
   });
 
-
-  //DGMR has been deprecated for now
-  //i will remake this once i find a way that is better
+//DGMR has been deprecated for now
+//i will remake this once i find a way that is better

@@ -738,10 +738,6 @@ const DumosGameMakerToolbox = {
       colour: "#03a5fc",
       contents: [
         {
-          type: "game_on_tick",
-          kind: "block",
-        },
-        {
           type: "game_on_start",
           kind: "block",
         },
@@ -750,11 +746,15 @@ const DumosGameMakerToolbox = {
           kind: "block",
         },
         {
-          type: "game_goscene",
+          type: "game_keypressed",
           kind: "block",
         },
         {
-          type: "game_keypressed",
+          type: "game_on_tick",
+          kind: "block",
+        },
+        {
+          type: "game_goscene",
           kind: "block",
         },
         {

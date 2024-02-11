@@ -4,26 +4,7 @@
 let color = "#03a5fc";
 //defines the Game category blocks.
 Blockly.defineBlocksWithJsonArray([
-  {
-    type: "game_on_tick",
-    message0: "on every tick %1 %2",
-    args0: [
-      {
-        type: "input_dummy",
-      },
-      {
-        type: "input_statement",
-        name: "code",
-      },
-    ],
-    previousStatement: null,
-    nextStatement: null,
-    inputsInline: true,
-    colour: color,
-    tooltip: "Runs every tick.",
-    helpUrl:
-      "https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame",
-  },
+  
   {
     type: "game_on_start",
     message0: "when website starts %1 %2",
@@ -55,6 +36,26 @@ Blockly.defineBlocksWithJsonArray([
     colour: color,
     tooltip: "Creates a scene",
     helpUrl: "",
+  },
+  {
+    type: "game_on_tick",
+    message0: "on every tick %1 %2",
+    args0: [
+      {
+        type: "input_dummy",
+      },
+      {
+        type: "input_statement",
+        name: "code",
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    inputsInline: true,
+    colour: color,
+    tooltip: "Runs every tick.",
+    helpUrl:
+      "https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame",
   },
   {
     type: "game_set_gravity",

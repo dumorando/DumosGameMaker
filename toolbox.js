@@ -38,6 +38,11 @@ const DumosGameMakerToolbox = {
   kind: "categoryToolbox",
   contents: [
     {
+      'kind': 'search',
+      'name': 'Search',
+      'contents': [],
+    },
+    {
       kind: "category",
       name: "Control",
       colour: "#03fc0b",
@@ -150,6 +155,13 @@ const DumosGameMakerToolbox = {
           type: "lists_create_with",
           kind: "block",
         },
+        {
+          type: "logic_boolean",
+          kind: "block",
+          fields: {
+            BOOL: "TRUE",
+          },
+        },
       ]
     },
     {
@@ -174,13 +186,6 @@ const DumosGameMakerToolbox = {
         {
           type: "logic_negate",
           kind: "block",
-        },
-        {
-          type: "logic_boolean",
-          kind: "block",
-          fields: {
-            BOOL: "TRUE",
-          },
         },
         {
           type: "logic_null",
@@ -741,8 +746,20 @@ const DumosGameMakerToolbox = {
           kind: "block",
         },
         {
+          type: "game_scene",
+          kind: "block"
+        },
+        {
+          type: "game_goscene",
+          kind: "block"
+        },
+        {
           type: "game_keypressed",
           kind: "block",
+        },
+        {
+          type: "game_deltatime",
+          kind: "block"
         },
         {
           type: "game_set_gravity",
@@ -775,7 +792,7 @@ const DumosGameMakerToolbox = {
     },
     {
       kind: "category",
-      name: "Collision",
+      name: "Components",
       colour: 330,
       contents: [
         {
@@ -786,17 +803,37 @@ const DumosGameMakerToolbox = {
           type: "collision_grounded",
           kind: "block"
         },
-      ]
-    },
-    {
-      kind: "category",
-      name: "Physics",
-      colour: "#fc0303",
-      contents: [
         {
           type: "physics_add_body",
           kind: "block"
         },
+        {
+          type: "physics_addbodystatic",
+          kind: "block"
+        }
+      ]
+    },
+    {
+      kind: "category",
+      name: "Movement",
+      colour: 230,
+      contents: [
+        {
+          type: "movement_gotoxy",
+          kind: "block"
+        },
+        {
+          type: "movement_movexy",
+          kind: "block"
+        },
+        {
+          type: "movement_xpos",
+          kind: "block"
+        },
+        {
+          type: "movement_ypos",
+          kind: "block"
+        }
       ]
     },
     {
@@ -814,6 +851,242 @@ const DumosGameMakerToolbox = {
         },
         {
           type: "time_timer",
+          kind: "block"
+        }
+      ]
+    },
+    {
+      // Lists Category
+      kind: 'CATEGORY',
+      name: "Lists",
+      colour: '%{BKY_LISTS_HUE}',
+      contents: [
+        {
+          kind: 'BLOCK',
+          type: 'lists_create_with',
+          extraState: {itemCount: 0},
+        },
+        {
+          kind: 'BLOCK',
+          type: 'lists_create_with',
+          extraState: {itemCount: 3},
+        },
+        {
+          kind: 'BLOCK',
+          type: 'lists_repeat',
+          inputs: {
+            NUM: {
+              shadow: {
+                type: 'math_number',
+                fields: {NUM: 5},
+              },
+            },
+          },
+        },
+        {
+          kind: 'BLOCK',
+          type: 'lists_length',
+        },
+        {
+          kind: 'BLOCK',
+          type: 'lists_isEmpty',
+        },
+        {
+          kind: 'BLOCK',
+          type: 'lists_indexOf',
+          inputs: {
+            VALUE: {
+              block: {
+                type: 'variables_get',
+                fields: {
+                  VAR: {
+                    name: '%{BKY_VARIABLES_DEFAULT_NAME}',
+                    type: 'List',
+                  },
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: 'BLOCK',
+          type: 'lists_getIndex',
+          inputs: {
+            VALUE: {
+              block: {
+                type: 'variables_get',
+                fields: {
+                  VAR: {
+                    name: '%{BKY_VARIABLES_DEFAULT_NAME}',
+                    type: 'List',
+                  },
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: 'BLOCK',
+          type: 'lists_setIndex',
+          inputs: {
+            LIST: {
+              block: {
+                type: 'variables_get',
+                fields: {
+                  VAR: {
+                    name: '%{BKY_VARIABLES_DEFAULT_NAME}',
+                    type: 'List',
+                  },
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: 'BLOCK',
+          type: 'lists_getSublist',
+          inputs: {
+            LIST: {
+              block: {
+                type: 'variables_get',
+                fields: {
+                  VAR: {
+                    name: '%{BKY_VARIABLES_DEFAULT_NAME}',
+                    type: 'List',
+                  },
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: 'BLOCK',
+          type: 'lists_getSublist',
+          inputs: {
+            LIST: {
+              block: {
+                type: 'variables_get',
+                fields: {
+                  VAR: {
+                    name: '%{BKY_VARIABLES_DEFAULT_NAME}',
+                    type: 'List',
+                  },
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: 'BLOCK',
+          type: 'lists_split',
+          inputs: {
+            DELIM: {
+              shadow: {
+                type: 'text',
+                fields: {TEXT: ','},
+              },
+            },
+          },
+        },
+        {
+          kind: 'BLOCK',
+          type: 'lists_sort',
+          inputs: {
+            LIST: {
+              block: {
+                type: 'variables_get',
+                fields: {
+                  VAR: {
+                    name: '%{BKY_VARIABLES_DEFAULT_NAME}',
+                    type: 'List',
+                  },
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: 'BLOCK',
+          type: 'lists_reverse',
+          inputs: {
+            LIST: {
+              block: {
+                type: 'variables_get',
+                id: 'Jyppgi#k[zERF`IH{gqY',
+                fields: {
+                  VAR: {
+                    name: '%{BKY_VARIABLES_DEFAULT_NAME}',
+                    type: 'List',
+                  },
+                },
+              },
+            },
+          },
+        },
+      ],
+    },
+    {
+      kind: "category",
+      name: "Window",
+      colour: 20,
+      contents: [
+        {
+          type: "window_gameresolution",
+          kind: "block"
+        },
+        {
+          type: "window_center",
+          kind: "block"
+        },
+        {
+          type: "window_focused",
+          kind: "block"
+        },
+        {
+          type: "window_touchscreen",
+          kind: "block"
+        },
+        {
+          type: "window_fullscreen",
+          kind: "block"
+        },
+        {
+          type: "window_setfullscreen",
+          kind: "block"
+        }
+      ]
+    },
+    {
+      kind: "category",
+      name: "Input",
+      colour: 65,
+      contents: [
+        {
+          type: "input_keydown",
+          kind: "block"
+        },
+        {
+          type: "input_keypressed",
+          kind: "block"
+        },
+        {
+          type: "input_keyreleased",
+          kind: "block"
+        },
+        {
+          type: "input_mousedown",
+          kind: "block"
+        },
+        {
+          type: "input_mousepressed",
+          kind: "block"
+        },
+        {
+          type: "input_mousereleased",
+          kind: "block"
+        },
+        {
+          type: "input_mousepos",
           kind: "block"
         }
       ]

@@ -85,12 +85,16 @@
     <script src="./blockly/blocks_compressed.js"></script>
     <script src="./blockly/javascript_compressed.js"></script>
     <script src="./blockly/msg/en.js"></script>
+    <script src="searchtoolbox.js"></script>
     <script src="toolbox.js"></script>
     <script src="./categories/game.js"></script>
     <script src="./categories/datauri.js"></script>
     <script src="./categories/collision.js"></script>
     <script src="./categories/physics.js"></script>
     <script src="./categories/time.js"></script>
+    <script src="./categories/window.js"></script>
+    <script src="./categories/input.js"></script>
+    <script src="./categories/movement.js"></script>
     <!-- for the game category. -->
     <!--<script src="idkblocklyrequiredthing.js"></script>-->
     <script src="blocklyinjector.js"></script>
@@ -105,6 +109,9 @@
     <script>
       vex.defaultOptions.className = "vex-theme-os";
       var compiledResult = null;
+
+      //so i was MEANT to put all this code into seperate files
+      //but i got side tracked and kept it all in this mess of a script tag
 
       var sprites = [];
 

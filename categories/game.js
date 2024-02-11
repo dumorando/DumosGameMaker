@@ -33,7 +33,27 @@ Blockly.defineBlocksWithJsonArray([
     helpUrl:
       "https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event",
   },
-
+  {
+    "type": "game_scene",
+    "message0": "Scene %1 %2 %3",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "SCENE",
+        "text": "main"
+      },
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "NAME"
+      }
+    ],
+    "colour": color,
+    "tooltip": "Creates a scene",
+    "helpUrl": ""
+  },
   {
     type: "game_set_gravity",
     message0: "Set gravity %1",
@@ -154,14 +174,34 @@ Blockly.defineBlocksWithJsonArray([
     tooltip: "Enter what the key is called in the box.",
     helpUrl: "",
   },
+  {
+    "type": "game_deltatime",
+    "message0": "delta time",
+    "output": null,
+    "colour": 210,
+    "tooltip": "Returns the time since last frame.",
+    "helpUrl": ""
+  },
+  {
+    "type": "game_goscene",
+    "message0": "Go to scene %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "SCENE",
+        "text": "main"
+      }
+    ],
+    "previousStatement": null,
+    "colour": 230,
+    "tooltip": "Changes scene to specified scene",
+    "helpUrl": ""
+  }
 ]);
 
 Blockly.JavaScript["game_on_tick"] = function (block) {
   var statements_code = Blockly.JavaScript.statementToCode(block, "code");
-  var code =
-    "function onGameTick() {\n" +
-    statements_code +
-    "\n window.requestAnimationFrame(onGameTick);\n};\n onGameTick();";
+  var code = "onUpdate(() => {\n" + statements_code + "\n});"
   return code;
 };
 
@@ -262,5 +302,27 @@ javascript.javascriptGenerator.forBlock["game_keypressed"] = function (
   // TODO: Assemble javascript into code variable.
   var code =
     'onKeyPress("' + text_key + '", () => {\n' + statements_name + "})\n";
+  return code;
+};
+
+javascript.javascriptGenerator.forBlock['game_deltatime'] = function(block, generator) {
+  // TODO: Assemble javascript into code variable.
+  var code = 'dt()';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+javascript.javascriptGenerator.forBlock['game_scene'] = function(block, generator) {
+  var text_scene = block.getFieldValue('SCENE');
+  var statements_name = generator.statementToCode(block, 'NAME');
+  // TODO: Assemble javascript into code variable.
+  var code = 'scene("' + text_scene + '", () => {\n' + statements_name + '\n})\n';
+  return code;
+};
+
+javascript.javascriptGenerator.forBlock['game_goscene'] = function(block, generator) {
+  var text_scene = block.getFieldValue('SCENE');
+  // TODO: Assemble javascript into code variable.
+  var code = 'go("' + text_scene + '")\n';
   return code;
 };

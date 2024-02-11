@@ -350,5 +350,5 @@ javascript.javascriptGenerator.forBlock['game_emptygo'] = function(block, genera
   // TODO: Assemble javascript into code variable.
   var code = 'add([])';
   // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.javascript.ORDER_NONE];
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };

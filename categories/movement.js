@@ -130,7 +130,7 @@ javascript.javascriptGenerator.forBlock["movement_xpos"] = function (
   // TODO: Assemble javascript into code variable.
   var code = variable_name + ".x";
   // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.javascript.ORDER_NONE];
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };
 javascript.javascriptGenerator.forBlock["movement_ypos"] = function (
   block,
@@ -143,7 +143,7 @@ javascript.javascriptGenerator.forBlock["movement_ypos"] = function (
   // TODO: Assemble javascript into code variable.
   var code = variable_name + ".y";
   // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.javascript.ORDER_NONE];
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 javascript.javascriptGenerator.forBlock["movement_movexy"] = function (

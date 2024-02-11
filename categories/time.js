@@ -122,5 +122,5 @@ javascript.javascriptGenerator.forBlock["time_timer"] = function (
   // TODO: Assemble javascript into code variable.
   var code = "time()";
   // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.javascript.ORDER_NONE];
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };

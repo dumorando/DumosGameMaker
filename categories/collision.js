@@ -57,5 +57,5 @@ javascript.javascriptGenerator.forBlock["collision_grounded"] = function (
   // TODO: Assemble javascript into code variable.
   var code = variable_name + ".isGrounded()\n";
   // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.javascript.ORDER_NONE];
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };

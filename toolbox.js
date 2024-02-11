@@ -798,6 +798,25 @@ const DumosGameMakerToolbox = {
           kind: "block"
         },
       ]
+    },
+    {
+      kind: "category",
+      name: "Timer",
+      colour: 160,
+      contents: [
+        {
+          type: "time_waitforseconds",
+          kind: "block"
+        },
+        {
+          type: "time_everyseconds",
+          kind: "block"
+        },
+        {
+          type: "time_timer",
+          kind: "block"
+        }
+      ]
     }
   ],
 };

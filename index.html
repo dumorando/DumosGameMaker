@@ -90,6 +90,7 @@
     <script src="./categories/datauri.js"></script>
     <script src="./categories/collision.js"></script>
     <script src="./categories/physics.js"></script>
+    <script src="./categories/time.js"></script>
     <!-- for the game category. -->
     <!--<script src="idkblocklyrequiredthing.js"></script>-->
     <script src="blocklyinjector.js"></script>
@@ -194,11 +195,22 @@
         previewwindow.document.write(compiledResult);
         previewwindow.document.close();
       }
+    
+      if (!navigator.userAgent.includes("Electron")) {
+        window.addEventListener('beforeunload', function (e) {
+            e.preventDefault();
+            e.returnValue = '';
+            var confirmationMessage = 'Are you sure you want to leave this site?';
+            e.returnValue = confirmationMessage;
+            return confirmationMessage;
+        });
+      }
+
 
       function compileCode() {
         javascript.javascriptGenerator.addReservedWords("code");
         let code =
-          "kaboom()\nsetGravity(2400)\nvar DGMOutputSprites = " +
+          "kaboom({width: 1280, height:720})\nsetGravity(2400)\nvar DGMOutputSprites = " +
           JSON.stringify(sprites) +
           "\n" +
           javascript.javascriptGenerator.workspaceToCode(workspace);

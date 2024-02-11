@@ -4,7 +4,7 @@ var workspace = Blockly.inject("EditorTab", {
   toolbox: DumosGameMakerToolbox,
   horizontalLayout: true,
   toolboxPosition: "start",
-  renderer: "thrasos",
+  renderer: "zelos",
 });
 
 const theme = Blockly.Theme.defineTheme("DumosGameMaker", {

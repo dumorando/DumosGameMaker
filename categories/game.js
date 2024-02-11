@@ -4,7 +4,6 @@
 let color = "#03a5fc";
 //defines the Game category blocks.
 Blockly.defineBlocksWithJsonArray([
-  
   {
     type: "game_on_start",
     message0: "when website starts %1 %2",
@@ -113,12 +112,12 @@ Blockly.defineBlocksWithJsonArray([
     helpUrl: "",
   },
   {
-    "type": "game_emptygo",
-    "message0": "empty gameobject",
-    "output": null,
-    "colour": 230,
-    "tooltip": "Creates an empty gameobject that you can customize.",
-    "helpUrl": ""
+    type: "game_emptygo",
+    message0: "empty gameobject",
+    output: null,
+    colour: 230,
+    tooltip: "Creates an empty gameobject that you can customize.",
+    helpUrl: "",
   },
   {
     type: "game_load_sprite",
@@ -346,9 +345,12 @@ javascript.javascriptGenerator.forBlock["game_goscene"] = function (
   return code;
 };
 
-javascript.javascriptGenerator.forBlock['game_emptygo'] = function(block, generator) {
+javascript.javascriptGenerator.forBlock["game_emptygo"] = function (
+  block,
+  generator,
+) {
   // TODO: Assemble javascript into code variable.
-  var code = 'add([])';
+  var code = "add([])";
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };

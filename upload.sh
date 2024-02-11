@@ -1,3 +1,4 @@
+yarn prettier . --write
 git init
 git add .
 git commit -m "Uploaded with upload.sh"

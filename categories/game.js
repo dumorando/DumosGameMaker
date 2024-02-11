@@ -113,6 +113,14 @@ Blockly.defineBlocksWithJsonArray([
     helpUrl: "",
   },
   {
+    "type": "game_emptygo",
+    "message0": "empty gameobject",
+    "output": null,
+    "colour": 230,
+    "tooltip": "Creates an empty gameobject that you can customize.",
+    "helpUrl": ""
+  },
+  {
     type: "game_load_sprite",
     message0: "Load sprite %1 ID %2 Data URI %3",
     args0: [
@@ -336,4 +344,11 @@ javascript.javascriptGenerator.forBlock["game_goscene"] = function (
   // TODO: Assemble javascript into code variable.
   var code = 'go("' + text_scene + '")\n';
   return code;
+};
+
+javascript.javascriptGenerator.forBlock['game_emptygo'] = function(block, generator) {
+  // TODO: Assemble javascript into code variable.
+  var code = 'add([])';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.javascript.ORDER_NONE];
 };

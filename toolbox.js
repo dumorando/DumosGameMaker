@@ -774,7 +774,8 @@ const DumosGameMakerToolbox = {
           kind: "block",
         },
         {
-          
+          type: "game_emptygo",
+          kind: "block"
         },
         {
           type: "gameobject_jump",

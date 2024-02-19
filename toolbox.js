@@ -1,51 +1,17 @@
-/*
-to add to Types category
-        {
-          type: "colour_picker",
-          kind: "block",
-          fields: {
-            COLOUR: "#ff0000",
-          },
-        },
-        {
-          type: "text",
-          kind: "block",
-          fields: {
-            TEXT: "",
-          },
-        },
-        {
-          type: "text_multiline",
-          kind: "block",
-          fields: {
-            TEXT: "",
-          },
-        },
-        {
-          type: "math_number",
-          kind: "block",
-          fields: {
-            NUM: 0,
-          },
-        },
-        {
-          type: "lists_create_with",
-          kind: "block",
-        },
-*/
-
-const DumosGameMakerToolbox = {
+var DumosGameMakerToolbox = {
   kind: "categoryToolbox",
   contents: [
     {
       kind: "search",
       name: "Search",
       contents: [],
+      id: 1,
     },
     {
       kind: "category",
       name: "Control",
       colour: "#03fc0b",
+      id: 2,
       contents: [
         {
           type: "controls_if",
@@ -122,6 +88,7 @@ const DumosGameMakerToolbox = {
       kind: "category",
       name: "Types",
       colour: "#f57e42",
+      id: 3,
       contents: [
         {
           type: "colour_picker",
@@ -168,6 +135,7 @@ const DumosGameMakerToolbox = {
       kind: "category",
       name: "Operations",
       colour: "#5a03fc",
+      id: 4,
       contents: [
         {
           type: "logic_compare",
@@ -721,12 +689,14 @@ const DumosGameMakerToolbox = {
       kind: "category",
       name: "Variables",
       custom: "VARIABLE",
+      id: 5,
       categorystyle: "variable_category",
     },
     {
       kind: "category",
       name: "Functions",
       custom: "PROCEDURE",
+      id: 6,
       categorystyle: "procedure_category",
     },
     {
@@ -736,6 +706,7 @@ const DumosGameMakerToolbox = {
       kind: "category",
       name: "Game",
       colour: "#03a5fc",
+      id: 7,
       contents: [
         {
           type: "game_on_start",
@@ -787,6 +758,7 @@ const DumosGameMakerToolbox = {
       kind: "category",
       name: "Data URI",
       colour: "#000",
+      id: 8,
       contents: [
         {
           type: "datauri_get",
@@ -797,6 +769,7 @@ const DumosGameMakerToolbox = {
     {
       kind: "category",
       name: "Components",
+      id: 9,
       colour: 330,
       contents: [
         {
@@ -815,11 +788,20 @@ const DumosGameMakerToolbox = {
           type: "physics_addbodystatic",
           kind: "block",
         },
+        {
+          type: "component_add",
+          kind: "block",
+        },
+        {
+          type: "component_modify",
+          kind: "block",
+        },
       ],
     },
     {
       kind: "category",
       name: "Movement",
+      id: 10,
       colour: 230,
       contents: [
         {
@@ -844,6 +826,7 @@ const DumosGameMakerToolbox = {
       kind: "category",
       name: "Timer",
       colour: 160,
+      id: 11,
       contents: [
         {
           type: "time_waitforseconds",
@@ -863,6 +846,7 @@ const DumosGameMakerToolbox = {
       // Lists Category
       kind: "CATEGORY",
       name: "Lists",
+      id: 12,
       colour: "%{BKY_LISTS_HUE}",
       contents: [
         {
@@ -1033,6 +1017,7 @@ const DumosGameMakerToolbox = {
       kind: "category",
       name: "Window",
       colour: 20,
+      id: 13,
       contents: [
         {
           type: "window_gameresolution",

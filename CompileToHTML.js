@@ -4,13 +4,6 @@
 function compileToHtml(jsCode, title) {
   let encoded = btoa(jsCode);
   let kaboomjs = dgm.kaboom;
-  let HtmlTemplate = `<!-- made with Dumos Game Maker --> <!doctype html><html><head><title>${title.trim()}</title></head><body><script src="${kaboomjs}"><\/script><script>eval(atob("${btoa(jsCode)}"))<\/script></body></html>`;
+  let HtmlTemplate = `<!-- made with Dumos Game Maker --> <!doctype html><html><head><title>${title.trim()}</title><style></style></head><body><script src="${kaboomjs}"><\/script><script>eval(atob("${btoa(jsCode)}"))<\/script></body></html>`;
   return HtmlTemplate;
 }
-/*
-function processRuntime(codeEncoded) {
-    //built version of DGMRuntime.js
-    let dgmruntime = atob(dgm.dgmruntime).replace("ENTER_B64_CODE", codeEncoded);
-    return btoa(dgmruntime);
-}
-*/

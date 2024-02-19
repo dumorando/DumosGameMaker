@@ -80,6 +80,7 @@
     </div>
 
     <!-- dumos game maker important libraries -->
+    <script src="info.js"></script>
     <script src="./blockly/blockly_compressed.js"></script>
     <script src="newvariable.js"></script>
     <script src="./blockly/blocks_compressed.js"></script>
@@ -90,6 +91,7 @@
     <script src="./categories/game.js"></script>
     <script src="./categories/datauri.js"></script>
     <script src="./categories/collision.js"></script>
+    <script src="./categories/components.js"></script>
     <script src="./categories/physics.js"></script>
     <script src="./categories/time.js"></script>
     <script src="./categories/window.js"></script>
@@ -111,7 +113,7 @@
       var compiledResult = null;
 
       //so i was MEANT to put all this code into seperate files
-      //but i got side tracked and kept it all in this mess of a script tag
+      //but i got side tracked and kept most of it in this mess of a script tag
 
       var sprites = [];
 
@@ -163,8 +165,12 @@
       }
       //game preview tool & export tool with compileToHtml
       function inspectJS() {
-        let code = javascript.javascriptGenerator.workspaceToCode(workspace);
-        alert(code);
+        let code =
+          "kaboom({width: 1280, height:720})\nsetGravity(2400)\n//the sprites array is removed from the preview because it takes a lot of space." +
+          "\n" +
+          javascript.javascriptGenerator.workspaceToCode(workspace);
+        let url = "/inspect.html?code=" + encodeURIComponent(btoa(code));
+        window.open(url, "inspectWindow", "width=1280,height=720");
       }
       function saveAsHtml() {
         if (!compiledResult) {

@@ -61,11 +61,25 @@ Blockly.defineBlocksWithJsonArray([
     ],
     previousStatement: null,
     nextStatement: null,
-    colour: 330,
+    colour: "#fc0303",
     tooltip: "Modifies a component in a game object",
     helpUrl: "",
   },
 ]);
+
+javascript.javascriptGenerator.forBlock["component_add"] = function (
+  block,
+  generator,
+) {
+  var dropdown_component = block.getFieldValue("COMPONENT");
+  var variable_name = generator.nameDB_.getName(
+    block.getFieldValue("GAMEOBJECT"),
+    Blockly.Names.NameType.VARIABLE,
+  );
+  // TODO: Assemble javascript into code variable.
+  var code = variable_name + ".use([" + dropdown_component + "])\n";
+  return code;
+};
 
 javascript.javascriptGenerator.forBlock["component_modify"] = function (
   block,
@@ -82,6 +96,7 @@ javascript.javascriptGenerator.forBlock["component_modify"] = function (
     javascript.Order.ATOMIC,
   );
   // TODO: Assemble javascript into code variable.
-  var code = "...\n";
+  var code =
+    variable_name + "." + dropdown_component + " = " + value_value + "\n";
   return code;
 };

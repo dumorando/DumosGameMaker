@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inspected Code</title>
+    <link rel="stylesheet" href="./styles/atom-one-dark.min.css" />
+    <style>
+      body {
+        margin: 0;
+        background-color: #282c34;
+      }
+    </style>
+  </head>
+  <body>
+    <pre><code id="code" class="language-javascript"></code></pre>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/bismuthnickel/jsx@0.0.0-alpha/JSX.js"></script>
+    <script>
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = atob(urlParams.get("code"));
+        $("code").textContent = code;
+      } catch (error) {
+        $("code").textContent = `console.log(\"${error.toString()}\");`;
+      }
+
+      hljs.highlightAll();
+    </script>
+  </body>
+</html>

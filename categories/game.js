@@ -210,7 +210,7 @@ Blockly.defineBlocksWithJsonArray([
 
 Blockly.JavaScript["game_on_tick"] = function (block) {
   var statements_code = Blockly.JavaScript.statementToCode(block, "code");
-  var code = "onUpdate(() => {\n" + statements_code + "\n});";
+  var code = "onUpdate(() => {\n" + statements_code + "\n});\n";
   return code;
 };
 
